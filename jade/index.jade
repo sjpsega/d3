@@ -2,13 +2,9 @@
 html
     meta(chartset="utf-8")
     head
-        title d3
+        title Diablo 3
         link(rel="stylesheet",href="css/bootstrap.css")
-        style
-            body {
-                padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-            }
-        link(rel="stylesheet",href="css/bootstrap-responsive.css")
+        link(rel="stylesheet",href="css/style.css")
     body
         .navbar.navbar-fixed-top
             .navbar-inner
@@ -17,8 +13,24 @@ html
                         span.icon-bar
                         span.icon-bar
                         span.icon-bar
-                    a.brand Project name
+                    a.brand Diablo 3
         .container
-            h1 Bootstrap starter template
+            h1 请输入Tag
+            .input-container
+                input.text.tag#role1_tag(value="IORI-1902")
+                input.text.tag#role2_tag(value="raywu-1265")
+                #tag-error.error.alert.alert-error 请输入正确的Tag
+                button.btn.btn-primary#submitBtn 确认
+            .role-selectes
+                select#role1_select
+                select#role2_select
+            ul.abilitys
+            ul#role1-ability.role-ability
+            ul#role2-ability.role-ability
+
+            
     script(src="js/jquery-1.7.2.min.js")
     script(src="js/bootstrap.js")
+    script(src="js/d3-util.js")
+    script(src="js/d3-role.js")
+    script(src="js/d3.js")
