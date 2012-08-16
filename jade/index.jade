@@ -15,10 +15,9 @@ html
                         span.icon-bar
                     a.brand Diablo 3
         .container
-            h1 请输入Tag
             .input-container
-                input.text.tag#role1_tag(value="IORI-1902")
-                input.text.tag#role2_tag(value="raywu-1265")
+                input.text.tag#role1_tag(value="IORI-1902",placeholder="你的tag,如IORI-1902")
+                input.text.tag#role2_tag(value="raywu-1265",placeholder="对方的tag")
                 #tag-error.error.alert.alert-error 请输入正确的Tag
                 button.btn.btn-primary#submitBtn 确认
             .role-selectes
@@ -28,7 +27,6 @@ html
             ul#role1-ability.role-ability
             ul#role2-ability.role-ability
 
-            
     script(src="js/jquery-1.7.2.min.js")
     script(src="js/bootstrap.js")
     script(src="js/d3-util.js")

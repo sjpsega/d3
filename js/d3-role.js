@@ -44,21 +44,21 @@ var Hero = function(data) {
 Hero.prototype = {
     loadInfo: function(handler) {
         var self = this;
-        var args = Array.prototype.slice.call(arguments,1);
+        var args = Array.prototype.slice.call(arguments, 1);
         if (this._loaded) {
-            if(handler){
-                handler.apply(self,args);
+            if (handler) {
+                handler.apply(self, args);
             }
             return;
         }
-            $.ajax({
-                dataType:"jsonp",
-                url: D3Util.getHeroURL(this.battleTag, this.id),
-                success: function(data) {
-                    self._loaded = true;
-                    self.info = data;
-                    handler.apply(self,args);
-                }
-            });
+        $.ajax({
+            dataType: "jsonp",
+            url: D3Util.getHeroURL(this.battleTag, this.id),
+            success: function(data) {
+                self._loaded = true;
+                self.info = data;
+                handler.apply(self, args);
+            }
+        });
     }
 }

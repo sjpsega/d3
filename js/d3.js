@@ -71,7 +71,7 @@ jQuery(function($) {
         var hero;
         for (index in heroes) {
             hero = heroes[index]
-            tempDiv.append($("<option>").text(hero.name).attr("value", hero.id));
+            tempDiv.append($("<option>").text(hero.name+"("+hero.class+")").attr("value", hero.id));
         }
         select.append(tempDiv.html());
         var selectedOption = select.find("option:selected");
