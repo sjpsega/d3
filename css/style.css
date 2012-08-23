@@ -1,10 +1,29 @@
 body {
     padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
 }
-.error{
-    display:none;
-}
 .abilitys,.role-ability{
     float: left;
     list-style:none;
+}
+.content{
+    position: relative;
+    left:50%;
+    float: left;
+}
+.content .content-inner{
+    position: relative;
+    left:-50%;
+}
+.abilitys-info{
+    border: 1px solid #CCCCCC;
+    line-height: 16px;
+}
+.abilitys,.role-ability{
+    width:25%;
+}
+.abilitys li,.role-ability li{
+    border-bottom: 1px solid #CCCCCC;
+}
+.success{
+    background-color: #51A351;
 }

@@ -1,5 +1,9 @@
+/**
+ * @author  jianping.shenjp
+ * @version 2012-8-23
+ */
 jQuery(function($) {
-    var util = D3Util;
+    var util = $.D3Util;
     var role1_data;
     var role2_data;
     var role1;
@@ -47,8 +51,10 @@ jQuery(function($) {
                 }
             $.when(wait()).done(function() {
                 console.log("done");
-                role1 = new Role(role1_data);
-                role2 = new Role(role2_data);
+                $(".role-selectes").fadeIn();
+                var modle = $.namespace('d3Model');
+                role1 = new modle.Role(role1_data);
+                role2 = new modle.Role(role2_data);
                 fillSelect(role1, "#role1_select", "#role1-ability");
                 fillSelect(role2, "#role2_select", "#role2-ability");
             }).fail(function() {
@@ -71,7 +77,7 @@ jQuery(function($) {
         var hero;
         for (index in heroes) {
             hero = heroes[index]
-            tempDiv.append($("<option>").text(hero.name+"("+hero.class+")").attr("value", hero.id));
+            tempDiv.append($("<option>").text(hero.name + "(" + hero.class + ")").attr("value", hero.id));
         }
         select.append(tempDiv.html());
         var selectedOption = select.find("option:selected");
@@ -96,7 +102,30 @@ jQuery(function($) {
                     tempDiv.append($("<li>").text(stats[str]));
                 }
                 ul.append(tempDiv.html());
-            },ul_id);
+                $(".abilitys-info").fadeIn();
+                compare(".role-ability");
+            }, ul_id);
+        }
+    }
+
+    function compare(clz) {
+        var uls = $(clz);
+        var lis1 = uls.eq(0).find("li");
+        var lis2 = uls.eq(1).find("li");
+        if (lis1.length > 0 && lis2.length > 0) {
+            lis1.removeClass("success");
+            lis2.removeClass("success");
+            var loopLength = lis1.length;
+            var tempLi1, tempLi2;
+            for (var i = 0; i < loopLength; i++) {
+                tempLi1 = lis1.eq(i);
+                tempLi2 = lis2.eq(i);;
+                if (parseInt(tempLi1.text()) > parseInt(tempLi2.text())) {
+                    tempLi1.addClass("success");
+                } else {
+                    tempLi2.addClass("success");
+                }
+            }
         }
     }
 })

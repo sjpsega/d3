@@ -6,7 +6,7 @@ html
         link(rel="stylesheet",href="css/bootstrap.css")
         link(rel="stylesheet",href="css/style.css")
     body
-        .navbar.navbar-fixed-top
+        .navbar.navbar-fixed-top.navbar-inverse
             .navbar-inner
                 .container
                     a.btn.btn-navbar(data-toggle="collapse",data-target=".nav-collapse")
@@ -14,18 +14,28 @@ html
                         span.icon-bar
                         span.icon-bar
                     a.brand Diablo 3
-        .container
-            .input-container
-                input.text.tag#role1_tag(value="IORI-1902",placeholder="你的tag,如IORI-1902")
-                input.text.tag#role2_tag(value="raywu-1265",placeholder="对方的tag")
-                #tag-error.error.alert.alert-error 请输入正确的Tag
-                button.btn.btn-primary#submitBtn 确认
-            .role-selectes
-                select#role1_select
-                select#role2_select
-            ul.abilitys
-            ul#role1-ability.role-ability
-            ul#role2-ability.role-ability
+                    .nav-collapse.subnav-collapse
+                        ul.nav.pull-right
+                            li.dropdown
+                                a(href="#").dropdown-toggle(data-toggle="dropdown") Tools
+                                    b.caret
+                                ul.dropdown-menu
+                                    li
+                                        a(href="http://blizzard.github.com/d3-api-docs/",target="_blank") API
+        .content
+            .content-inner
+                .input-container
+                    input(type="text").tag#role1_tag(value="IORI-1902",placeholder="你的tag,如IORI-1902")
+                    input(type="text").tag#role2_tag(value="raywu-1265",placeholder="对方的tag")
+                    #tag-error.error.hide.alert.alert-error 请输入正确的Tag
+                    button.btn.btn-primary#submitBtn 确认
+                .role-selectes.hide 
+                    select#role1_select
+                    select#role2_select
+                .abilitys-info.clearfix.hide
+                    ul.abilitys
+                    ul#role1-ability.role-ability
+                    ul#role2-ability.role-ability
 
     script(src="js/jquery-1.7.2.min.js")
     script(src="js/bootstrap.js")
