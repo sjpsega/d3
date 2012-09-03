@@ -122,7 +122,7 @@ jQuery(function($) {
                 tempLi2 = lis2.eq(i);;
                 if (parseInt(tempLi1.text()) > parseInt(tempLi2.text())) {
                     tempLi1.addClass("success");
-                } else {
+                } else if((parseInt(tempLi1.text()) < parseInt(tempLi2.text()))){
                     tempLi2.addClass("success");
                 }
             }
