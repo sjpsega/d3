@@ -119,10 +119,10 @@ jQuery(function($) {
             var tempLi1, tempLi2;
             for (var i = 0; i < loopLength; i++) {
                 tempLi1 = lis1.eq(i);
-                tempLi2 = lis2.eq(i);;
-                if (parseInt(tempLi1.text()) > parseInt(tempLi2.text())) {
+                tempLi2 = lis2.eq(i);
+                if (parseInt(tempLi1.text()) * 100 > parseInt(tempLi2.text()) * 100) {
                     tempLi1.addClass("success");
-                } else if((parseInt(tempLi1.text()) < parseInt(tempLi2.text()))){
+                } else if (parseInt(tempLi1.text()) * 100 < parseInt(tempLi2.text()) * 100) {
                     tempLi2.addClass("success");
                 }
             }

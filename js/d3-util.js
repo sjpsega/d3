@@ -23,11 +23,12 @@
         CAREER_API: "/api/d3/profile/",
         HERO_API: "/api/d3/profile/",
         CONN_SYMBOL: "/",
+        LOCALE:'?locale=zh_CN',
         getCarrerURL: function(tag) {
-            return this.HOST + this.CAREER_API + tag + this.CONN_SYMBOL;
+            return this.HOST + this.CAREER_API + tag + this.CONN_SYMBOL+this.LOCALE;
         },
         getHeroURL: function(tag, heroid) {
-            return this.HOST + this.HERO_API + tag + this.CONN_SYMBOL + "hero" + this.CONN_SYMBOL + heroid;
+            return this.HOST + this.HERO_API + tag + this.CONN_SYMBOL + "hero" + this.CONN_SYMBOL + heroid+this.LOCALE;
         }
     }
 })(jQuery);

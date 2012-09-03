@@ -21,7 +21,16 @@
         "arcaneResist": "秘法抗",
         "damageIncrease": "伤害提升",
         "critChance": "暴击率",
-        "damageReduction": "伤害减免"
+        "critDamage": "暴击伤害",
+        "damageReduction": "伤害减免",
+        "attackSpeed": "攻击速度",
+        "blockChance":"挡格几率",
+        "thorns":"荆棘伤害",
+        "lifeSteal":"生命窃取",
+        "lifePerKill":"击杀回复",
+        "lifeOnHit":"击中回复",
+        "goldFind":"寻金率",
+        "magicFind":"寻宝率"
     }
     var Role = function(data) {
             var self = this;
@@ -90,7 +99,7 @@
     modle.Hero = Hero;
     function returnFormatData(data) {
         var stats = data.stats;
-        var percentPros = ["critChance", "damageReduction", "damageIncrease"];
+        var percentPros = ["critChance", "critDamage", "damageReduction", "damageIncrease","goldFind","magicFind","blockChance","lifeSteal"];
         $.each(percentPros, function(index, item) {
             if (stats[item]) {
                 stats[item] = percent(stats[item]);
@@ -102,8 +111,8 @@
         }
 
         function trans(data) {
-            $.each(TRANS_MAP, function(index, item) {
-                if (data[index]) {
+            $.each(data, function(index, item) {
+                if (TRANS_MAP[index]) {
                     data[TRANS_MAP[index]] = data[index];
                     delete data[index];
                 }
