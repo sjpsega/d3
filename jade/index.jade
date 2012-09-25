@@ -25,8 +25,8 @@ html
         .content
             .content-inner
                 .input-container
-                    input(type="text").tag#role1_tag(value="IORI-1902",placeholder="你的tag,如IORI-1902")
-                    input(type="text").tag#role2_tag(value="raywu-1265",placeholder="对方的tag")
+                    input(type="text",name="tag1").tag#role1_tag(value="IORI-1902",placeholder="你的tag,如IORI-1902")
+                    input(type="text",name="tag2").tag#role2_tag(value="raywu-1265",placeholder="对方的tag")
                     #tag-error.error.hide.alert.alert-error 请输入正确的Tag
                     button.btn.btn-primary#submitBtn 确认
                 .role-selectes.hide 
@@ -38,6 +38,7 @@ html
                     ul#role2-ability.role-ability
 
     script(src="js/jquery-1.7.2.min.js")
+    script(src="js/jquery.cookie.js")
     script(src="js/bootstrap.js")
     script(src="js/d3-util.js")
     script(src="js/d3-role.js")
