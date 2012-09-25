@@ -7,7 +7,8 @@ jQuery(function($) {
     var d3 = {
         init: function() {
             $.ajaxSetup({
-                dataType: "jsonp"
+                dataType: "jsonp",
+                scriptCharset: "utf-8"
             });
             this.readCookie();
             this.initSubmitBtnEvent();
