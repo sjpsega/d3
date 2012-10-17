@@ -30,7 +30,10 @@
         "lifePerKill":"击杀回复",
         "lifeOnHit":"击中回复",
         "goldFind":"寻金率",
-        "magicFind":"寻宝率"
+        "magicFind":"寻宝率",
+        "blockAmountMin":"格挡最小值",
+        "blockAmountMax":"格挡最大值",
+        "paragonLevel":"怕老公等级"
     }
     var Role = function(data) {
             var self = this;
@@ -89,8 +92,9 @@
                 url: util.getHeroURL(this.battleTag, this.id),
                 success: function(data) {
                     self._loaded = true;
+                    data.stats.level = data.level;
+                    data.stats.paragonLevel = data.paragonLevel;
                     self.info = returnFormatData(data);
-                    self.info.stats.level = data.level;
                     handler.apply(self, args);
                 }
             });
