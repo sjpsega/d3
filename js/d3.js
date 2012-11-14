@@ -31,8 +31,8 @@ jQuery(function($) {
         },
         initSubmitBtnEvent: function() {
             var self = this;
-            var role1_data;
-            var role2_data;
+            var role1_data={};
+            var role2_data={};
             var role1;
             var role2;
             var clickFun = function() {
@@ -46,35 +46,23 @@ jQuery(function($) {
                         });
                         return;
                     }
-                    function getRole1Data(promise){
+                    function getRoleData(tagName,roleData){
+                        var dtd = $.Deferred();
                         $.ajax({
-                            url: util.getCarrerURL(tagName1),
+                            url: util.getCarrerURL(tagName),
                             success: function(data) {
                                 if (!data.battleTag) {
-                                    promise.reject();
+                                    dtd.reject();
                                     return;
                                 }
-                                role1_data = data;
-                                promise.resolve();
+                                //设置返回数据
+                                $.extend(roleData,data);
+                                dtd.resolve();
                             }
                         })
+                        return dtd.promise();
                     }
-                    function getRole2Data(promise){
-                        $.ajax({
-                            url: util.getCarrerURL(tagName2),
-                            success: function(data) {
-                                if (!data.battleTag) {
-                                    promise.reject();
-                                    return;
-                                }
-                                role2_data = data;
-                                promise.resolve();
-                            }
-                        })
-                    }
-                    $.when.apply($,$.map([getRole1Data,getRole2Data],function(task){
-                        return $.Deferred(task);
-                    })).done(function() {
+                    $.when(getRoleData(tagName1,role1_data),getRoleData(tagName2,role2_data)).done(function() {
                         console.log("done");
                         $.cookie("tagNames", tagName1 + "|" + tagName2, {
                             expires: 30
@@ -87,7 +75,7 @@ jQuery(function($) {
                         self.fillSelect(role2, "#role2_select", "#role2-ability");
                     }).fail(function() {
                         console.log("error");
-                    });;
+                    });
                 }
 
                 $("#submitBtn").on({click:clickFun});
