@@ -46,36 +46,35 @@ jQuery(function($) {
                         });
                         return;
                     }
-                    var wait = function() {
-                            var dtd = $.Deferred();
-                            $.ajax({
-                                url: util.getCarrerURL(tagName1),
-                                success: function(data) {
-                                    if (!data.battleTag) {
-                                        dtd.reject();
-                                        return;
-                                    }
-                                    role1_data = data;
-                                }
-                            }).done(function() {
-                                if (dtd.isRejected()) {
+                    function getRole1Data(promise){
+                        $.ajax({
+                            url: util.getCarrerURL(tagName1),
+                            success: function(data) {
+                                if (!data.battleTag) {
+                                    promise.reject();
                                     return;
                                 }
-                                $.ajax({
-                                    url: util.getCarrerURL(tagName2),
-                                    success: function(data) {
-                                        if (!data.battleTag) {
-                                            dtd.reject();
-                                            return;
-                                        }
-                                        role2_data = data;
-                                        dtd.resolve();
-                                    }
-                                })
-                            });
-                            return dtd.promise();
-                        }
-                    $.when(wait()).done(function() {
+                                role1_data = data;
+                                promise.resolve();
+                            }
+                        })
+                    }
+                    function getRole2Data(promise){
+                        $.ajax({
+                            url: util.getCarrerURL(tagName2),
+                            success: function(data) {
+                                if (!data.battleTag) {
+                                    promise.reject();
+                                    return;
+                                }
+                                role2_data = data;
+                                promise.resolve();
+                            }
+                        })
+                    }
+                    $.when.apply($,$.map([getRole1Data,getRole2Data],function(task){
+                        return $.Deferred(task);
+                    })).done(function() {
                         console.log("done");
                         $.cookie("tagNames", tagName1 + "|" + tagName2, {
                             expires: 30
@@ -88,7 +87,7 @@ jQuery(function($) {
                         self.fillSelect(role2, "#role2_select", "#role2-ability");
                     }).fail(function() {
                         console.log("error");
-                    });
+                    });;
                 }
 
                 $("#submitBtn").on({click:clickFun});
